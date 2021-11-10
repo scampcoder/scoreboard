@@ -1,19 +1,44 @@
-const desc = 'I just learned how to create a React node and render it into the DOM.'
-const myTitleID = 'main-title';
-const name = 'Victoria';
+const Header = (props) => {
+    return (
+        <header>
+            <h1>{ props.title }</h1>
+            <span className="stats">Players: { props.totalPlayers }</span>
+        </header>
+    );
+}
 
-const header = (
-    <header>
-    {/* this is a comment in JSX */}
-        <h1 id={ myTitleID }>{ name }'s First React Element</h1>
-        <p>{ desc }</p>
-    </header>
-);
+const Player = () => {
+    return (
+        <div className="player">
+            <span className="player-name">
+                Victoria
+            </span>
+            <Counter />
+        </div>
+    )
+}
+
+const Counter = () => {
+    return (
+        <div className="counter">
+            <button className="counter-action decrement"> - </button>
+            <span className="counter-score">35</span>
+            <button className="counter-action increment"> + </button>
+        </div>
+    );
+}
+
+const App = () => {
+    return (
+        <div className="scoreboard">
+            <Header title="Scoreboard" totalPlayers={1} />
+            {/* Player's List */}
+            <Player />
+        </div>
+    );
+}
 
 ReactDOM.render(
-    header, //element to render
+    <App />, //element to render
     document.getElementById('root') //container it will render in
 );
-
-//when we write curly braces it lets JSX know that we are using JS.
-//Inside the curly braces is what's called a JS espression.
